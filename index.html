@@ -207,16 +207,22 @@
             <section>
               <pre>
                 <code style="word-wrap: break-word;">
-class Sorter{
+class RequestReader{
 
-    private static List&lt;String&gt; list = new ArrayList&lt;&gt;();
+    String readAsString(InputStream stream) throw IOException{
+        val reader = new InputStreamReader(stream);
+        returnChar CharStreams.toString(reader);
+    }
 
-    public List&lt;String&gt; sort(String… args){
-        list.clear();
-        list.addAll( Arrays.asList(args) );
+    List&lt;String&gt; readAsLines(InputStream stream) throw IOException{
+        returnChar IOUtils.readLines(stream);
+    }
 
-        Collections.sort(list);
-        return list;
+    void main(){
+      val input = new FileInputStream("myfile.txt");
+
+      println("content: " + readAsString(input));
+      println("lines: " + readAsLines(input));
     }
 
 }
@@ -224,16 +230,27 @@ class Sorter{
               </pre>
             </section>
 
+            <section data-background="#4d7e65" data-background-transition="zoom">
+              <h2>Exception!!!!</h2>
+            </section>
+
             <section>
               <pre>
                 <code style="word-wrap: break-word;">
-class Sorter{
+class RequestReader{
 
+    String readAsString(InputStream stream) throw IOException{
+        val reader = new InputStreamReader(cloneOf(stream));
+        returnChar Streams.toString(reader);
+    }
 
-    public List&lt;String&gt; sort(String… args){
-        List&lt;String&gt; list = Arrays.asList(args);
-        Collections.sort(list);
-        return list;
+    List&lt;String&gt; readAsLines(InputStream stream) throw IOException{
+        returnChar IOUtils.readLines(cloneOf(stream));
+    }
+
+    InputStream cloneOf(InputStream input){
+      val cloned ....
+      return cloned;
     }
 
 }

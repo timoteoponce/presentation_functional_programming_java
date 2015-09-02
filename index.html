@@ -154,7 +154,7 @@
           <p class="fragment">Los datos son percibidos o calculados</p>
           <p class="fragment">Los datos calculados son estables</p>
         </section>
-        
+
         <section>
           <h2>Tenemos límites</h2>
           <ul>
@@ -173,7 +173,7 @@
 
         <section>
           <blockquote>
-            La programación funcional es un estilo de programación que enfatiza la evaluación de 
+            La programación funcional es un estilo de programación que enfatiza la evaluación de
             expresiones por encima de la ejecución de comandos
           </blockquote>
           <small>com.lang.functional, 2014</small>
@@ -190,19 +190,23 @@
             <li>Flujo de datos (Data in, Data out)</li>
             <li>Inmutabilidad</li>
             <li>Estilo declarativo</li>
-            <li>Tipos de datos específicos</li>
-            <li>Funciones como datos</li>                       
+            <li>Datos como datos</li>
+            <li>Funciones como datos</li>
           </ul>
         </section>
 
         <section>
-          <h2>Flujo de datos</h2>
-          <img src="img/function.png" alt="" style="background: #FFFFCC;" height="500"/>
-        </section>
+            <section>
+              <h2>Flujo de datos</h2>
+            </section>
 
-        <section>
-          <pre>
-            <code>
+            <section>
+              <img src="img/function.png" alt="" style="background: #FFFFCC;" height="500"/>
+            </section>
+
+            <section>
+              <pre>
+                <code>
 class Sorter{
 
     private static List&lt;String&gt; list = new ArrayList&lt;&gt;();
@@ -215,15 +219,14 @@ class Sorter{
         return list;
     }
 
-} 
-            </code>
-          </pre>
-        </section>
+}
+                </code>
+              </pre>
+            </section>
 
-
-        <section>
-          <pre>
-            <code>
+            <section>
+              <pre>
+                <code>
 class Sorter{
 
 
@@ -233,94 +236,96 @@ class Sorter{
         return list;
     }
 
-} 
-            </code>
-          </pre>
-        </section>
+}
+                </code>
+              </pre>
+            </section>
 
 
-        <section data-background="#4d7e65" data-background-transition="zoom">
-          <p>Alcance local</p>
-          <p>Determinístico</p>
-          <p>Baja complejidad</p>
-          <p>No interrumpe el flujo de ejecución</p>
-        </section>
-
-        <section>
-          <h2>Inmutabilidad</h2>
+            <section data-background="#4d7e65" data-background-transition="zoom">
+              <p>Alcance local</p>
+              <p>Determinístico</p>
+              <p>Baja complejidad</p>
+              <p>No interrumpe el flujo de ejecución</p>
+            </section>
         </section>
 
         <section>
-           <img src="img/anders_hejlsberg.jpg" alt="" height="600"/>                    
-        </section>
+            <section>
+              <h2>Inmutabilidad</h2>
+            </section>
 
-        <section>
-          <blockquote>
-            El problema que tenemos con concurrencia es que por años hemos 
-            enseñado efectivamente a generaciones de programadores que el 
-            estado mutable nos permite trabajar de la mejor forma. 
-            Ahora estamos en una carrera para enseñar que no todo eso es cierto
-          </blockquote>
-          <small>Anders Hejlsberg, SEI-Radio, 2008</small>
-        </section>
+            <section>
+               <img src="img/anders_hejlsberg.jpg" alt="" height="600"/>
+            </section>
 
-        <section>
-          <p>Valores &lt; - &gt; Tiempo</p>
-          <p class="fragment">
-            Git / Mercurial / Fossil
-          </p>
-        </section>
+            <section>
+              <blockquote>
+                El problema que tenemos con concurrencia es que por años hemos
+                enseñado efectivamente a generaciones de programadores que el
+                estado mutable nos permite trabajar de la mejor forma.
+                Ahora estamos en una carrera para enseñar que no todo eso es cierto
+              </blockquote>
+              <small>Anders Hejlsberg, SEI-Radio, 2008</small>
+            </section>
 
-        <section>
-          <h2>Acoplamiento temporal</h2>
-          <pre>
-            <code data-trim >
+            <section>
+              <p>Valores &lt; - &gt; Tiempo</p>
+              <p class="fragment">
+                Git / Mercurial / Fossil
+              </p>
+            </section>
+
+            <section>
+              <h2>Acoplamiento temporal</h2>
+              <pre>
+                <code data-trim >
 Request req = new Request("http://juanbandafanpage.com");
 req.method(Request.POST);
 request.body("fanId=chichico");
 request.fetch();
-            </code>
-              
-            <code class="fragment" data-trim >
+                </code>
+
+                <code class="fragment" data-trim >
 Request req = new Request("http://juanbandafanpage.com");
 // req.method(Request.POST);
 request.body("fanId=chichico");
 request.fetch(); //NPE!!!
-            </code>
-          </pre>
-        </section>
+                </code>
+              </pre>
+            </section>
 
-        <section>
-          <h2>Acoplamiento temporal</h2>
-          <pre>
-            <code data-trim >
+            <section>
+              <h2>Acoplamiento temporal</h2>
+              <pre>
+                <code data-trim >
 Request req = new Request("http://juanbandafanpage.com");
 req = req.body("fanId=chichico");
 req = req.post();
 req.fetch();
-            </code>
-            <code data-trim >
+                </code>
+                <code data-trim >
 Request req = new Request("http://juanbandafanpage.com");
 req.body("fanId=chichico").post().fetch();
-            </code>
-          </pre>
-        </section>
+                </code>
+              </pre>
+            </section>
 
-        <section>
-          <ul>
-            <li>java.lang.String</li>
-            <li>java.util.Date</li>
-            <li>com.google.guava</li>
-          </ul>
-        </section>
+            <section>
+              <ul>
+                <li>java.lang.String</li>
+                <li>java.util.Date</li>
+                <li>com.google.guava</li>
+              </ul>
+            </section>
 
-        <section>
-          <h2>Un ejemplo ...real</h2>
-<pre>
-<code data-trim >
+            <section>
+              <h2>Un ejemplo ...real</h2>
+                <pre>
+                    <code data-trim >
           class Constants{
             ...
-            static List<Lang> ALL_LANGS = 
+            static List&lt;Lang&gt; ALL_LANGS =
               Arrays.asList(DE,ENG,IT,FR);
           }
 
@@ -333,42 +338,45 @@ req.body("fanId=chichico").post().fetch();
               availableLangs.clear();
             }
           }
-</code>
-</pre>
-        </section>
+                </code>
+                </pre>
+            </section>
 
-         <section>
-          <pre>
-            <code data-trim >
+             <section>
+              <pre>
+                <code data-trim >
             class Constants{
               ...
-              static List&lt;Lang> ALL_LANGS =
+              static List&lt;Lang&gt; ALL_LANGS =
                 Collections.unmodifiableList(
                   Arrays.asList(DE,ENG,IT,FR)
                 );
             }
-            </code>
-          </pre>
-        </section>
+                </code>
+              </pre>
+            </section>
 
 
-        <section data-background="#4d7e65" data-background-transition="zoom">
-          <p>Los valores no cambian, generan nuevos valores</p>
-          <p>El estado mutable es local</p>
-          <p>Los valores no necesitan thread-safety</p>
-          <p>No existen efectos secundarios</p>
-          <p>Identidad!!!</p>
-        </section>
-
-
-        <section>
-          <h2>Estilo declarativo</h2>
-          <p class="fragment">Diga lo que hace, haga lo que dice</p>
+            <section data-background="#4d7e65" data-background-transition="zoom">
+              <p>Los valores no cambian, generan nuevos valores</p>
+              <p>El estado mutable es local</p>
+              <p>Los valores no necesitan thread-safety</p>
+              <p>No existen efectos secundarios</p>
+              <p>Identidad!!!</p>
+            </section>
         </section>
 
         <section>
-<pre>
-<code data-trim >
+            <section>
+              <h2>Estilo declarativo</h2>
+            </section>
+            <section>
+              <h2>Diga lo que hace, haga lo que dice</h2>
+            </section>
+
+            <section>
+                <pre>
+                <code data-trim >
   int countBugs(String filePath){
     Path path = Paths.get(filePath);
     int count = 0;
@@ -385,29 +393,28 @@ req.body("fanId=chichico").post().fetch();
       printErr(e);
     }
   }
-</code>
-</pre>
-        </section>
+            </code>
+            </pre>
+            </section>
 
-        <section>
-<pre>
-<code data-trim >
+            <section>
+                <pre>
+                <code data-trim >
   int countBugs(String filePath){
     return Files.readAllLines(Paths.get(filePath))
         .stream()
         .filter(line -> line.contains(“BUG”))
         .count();
   }
-</code>
-</pre>
-        </section>
+                </code>
+                </pre>
+            </section>
 
-
-        <section>
-          <h2>Mas ejemplos?</h2>
-<pre>
-<code data-trim >
-    List<Deposit> deposits= …;
+            <section>
+              <h2>Mas ejemplos?</h2>
+                <pre>
+                <code data-trim >
+    List&lt;Deposit&gt; deposits= …;
 
 
 
@@ -422,17 +429,16 @@ req.body("fanId=chichico").post().fetch();
     Optional<> minTransfer = deposits.stream()
              .min((d1, d2) -> d1 > d2);
 
-</code>
-</pre>
-        </section>
+                </code>
+                </pre>
+            </section>
 
-
-
-        <section data-background="#4d7e65" data-background-transition="zoom">
-          <p>Código expresivo</p>
-          <p>Enfoque en el fondo, no la forma</p>
-          <p>Simplicidad inherente</p>
-          <p>Evaluación optimizable</p>
+            <section data-background="#4d7e65" data-background-transition="zoom">
+              <p>Código expresivo</p>
+              <p>Enfoque en el fondo, no la forma</p>
+              <p>Simplicidad inherente</p>
+              <p>Evaluación optimizable</p>
+            </section>
         </section>
 
         <!--
@@ -442,25 +448,38 @@ req.body("fanId=chichico").post().fetch();
         -->
 
         <section>
-          <h2>Funciones como datos</h2>
-        </section>
+            <section>
+              <h2>Funciones como datos</h2>
+            </section>
 
-        <section>
-<pre>
-<code data-trim>
+            <section>
+                <pre>
+                <code data-trim>
 $> find . -iname *.java | grep server | xargs hg rm
-</code>
-</pre>
+                </code>
+                </pre>
+            </section>
+
+            <section>
+              //TODO un ejemplo
+            </section>
+
+            <section data-background="#4d7e65" data-background-transition="zoom">
+              <p>Funciones como datos</p>
+              <p>Funciones componibles</p>
+              <p>Funciones cortas y simples</p>
+            </section>
         </section>
+
 
         <section>
-          //TODO un ejemplo 
-        </section>
+            <section>
+                <h2>Datos como datos</h2>
+            </section>
 
-         <section data-background="#4d7e65" data-background-transition="zoom">
-          <p>Funciones como datos</p>
-          <p>Funciones componibles</p>
-          <p>Funciones cortas y simples</p>
+            <section data-background="#4d7e65" data-background-transition="zoom">
+              <p>TODO</p>
+            </section>
         </section>
 
         <section>

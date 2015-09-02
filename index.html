@@ -100,7 +100,7 @@
         <section>
           <h2>Resultado: McIlroy</h2>
           <pre>
-            <code>
+            <code style="word-wrap: break-word;">
               $> tr -cs A-Za-z '\n' |
                  tr A-Z a-z |
                  sort |
@@ -206,7 +206,7 @@
 
             <section>
               <pre>
-                <code>
+                <code style="word-wrap: break-word;">
 class Sorter{
 
     private static List&lt;String&gt; list = new ArrayList&lt;&gt;();
@@ -226,7 +226,7 @@ class Sorter{
 
             <section>
               <pre>
-                <code>
+                <code style="word-wrap: break-word;">
 class Sorter{
 
 
@@ -279,14 +279,14 @@ class Sorter{
             <section>
               <h2>Acoplamiento temporal</h2>
               <pre>
-                <code data-trim >
+                <code style="word-wrap: break-word;">
 Request req = new Request("http://juanbandafanpage.com");
 req.method(Request.POST);
 request.body("fanId=chichico");
 request.fetch();
                 </code>
 
-                <code class="fragment" data-trim >
+                <code class="fragment" style="word-wrap: break-word;" >
 Request req = new Request("http://juanbandafanpage.com");
 // req.method(Request.POST);
 request.body("fanId=chichico");
@@ -298,13 +298,13 @@ request.fetch(); //NPE!!!
             <section>
               <h2>Acoplamiento temporal</h2>
               <pre>
-                <code data-trim >
+                <code style="word-wrap: break-word;" >
 Request req = new Request("http://juanbandafanpage.com");
 req = req.body("fanId=chichico");
 req = req.post();
 req.fetch();
                 </code>
-                <code data-trim >
+                <code style="word-wrap: break-word;">
 Request req = new Request("http://juanbandafanpage.com");
 req.body("fanId=chichico").post().fetch();
                 </code>
@@ -322,36 +322,35 @@ req.body("fanId=chichico").post().fetch();
             <section>
               <h2>Un ejemplo ...real</h2>
                 <pre>
-                    <code data-trim >
-          class Constants{
-            ...
-            static List&lt;Lang&gt; ALL_LANGS =
-              Arrays.asList(DE,ENG,IT,FR);
-          }
+                    <code data-trim style="word-wrap: break-word;" >
+class Constants{
+  ...
+  static List&lt;Lang&gt; ALL_LANGS =
+    Arrays.asList(DE,ENG,IT,FR);
+}
 
-          class Session{
-            void login(){
-              availableLangs = Constants.ALL_LANGS;
-            }
+class Session{
+  void login(){
+    availableLangs = Constants.ALL_LANGS;
+  }
 
-            void terminate(){
-              availableLangs.clear();
-            }
-          }
+  void terminate(){
+    availableLangs.clear();
+  }
+}
                 </code>
                 </pre>
             </section>
 
              <section>
               <pre>
-                <code data-trim >
-            class Constants{
-              ...
-              static List&lt;Lang&gt; ALL_LANGS =
-                Collections.unmodifiableList(
-                  Arrays.asList(DE,ENG,IT,FR)
-                );
-            }
+                <code data-trim style="word-wrap: break-word;">
+class Constants{
+  
+  static List&lt;Lang&gt; ALL_LANGS = Collections.unmodifiableList(
+    Arrays.asList(DE,ENG,IT,FR)
+  );
+}
                 </code>
               </pre>
             </section>
@@ -376,36 +375,36 @@ req.body("fanId=chichico").post().fetch();
 
             <section>
                 <pre>
-                <code data-trim >
-  int countBugs(String filePath){
-    Path path = Paths.get(filePath);
-    int count = 0;
+                <code data-trim style="word-wrap: break-word;">
+int countBugs(String filePath){
+  Path path = Paths.get(filePath);
+  int count = 0;
 
-    try(FileReader reader = new FileReader(
-          Files.newInputStream(path))
-       ){
-        String line = null;
-        while( (line = reader.readLine()) != null )
-            if(line.contains(“BUG”))
-               count++;
+  try(FileReader reader = new FileReader(
+        Files.newInputStream(path))
+     ){
+      String line = null;
+      while( (line = reader.readLine()) != null )
+          if(line.contains(“BUG”))
+             count++;
 
-    }catch(IOException e){
-      printErr(e);
-    }
+  }catch(IOException e){
+    printErr(e);
   }
+}
             </code>
             </pre>
             </section>
 
             <section>
                 <pre>
-                <code data-trim >
-  int countBugs(String filePath){
-    return Files.readAllLines(Paths.get(filePath))
-        .stream()
-        .filter(line -> line.contains(“BUG”))
-        .count();
-  }
+                <code data-trim style="word-wrap: break-word;">
+int countBugs(String filePath){
+  return Files.readAllLines(Paths.get(filePath))
+      .stream()
+      .filter(line -> line.contains(“BUG”))
+      .count();
+}
                 </code>
                 </pre>
             </section>
@@ -413,21 +412,20 @@ req.body("fanId=chichico").post().fetch();
             <section>
               <h2>Mas ejemplos?</h2>
                 <pre>
-                <code data-trim >
-    List&lt;Deposit&gt; deposits= …;
+                <code data-trim style="word-wrap: break-word;">
+List&lt;Deposit&gt; deposits= …;
 
 
+// give me the big transfers
+long allBigTransfers = deposits.stream()
+  .filter(d -> d.amount > 10000L)
+  .mapToLong(d -> t.amount)
+  .sum();
 
-    // give me the big transfers
-    long allBigTransfers = deposits.stream()
-      .filter(d -> d.amount > 10000L)
-      .mapToLong(d -> t.amount)
-      .sum();
 
-
-    // give me the smallest transfer
-    Optional<> minTransfer = deposits.stream()
-             .min((d1, d2) -> d1 > d2);
+// give me the smallest transfer
+Optional<> minTransfer = deposits.stream()
+         .min((d1, d2) -> d1 > d2);
 
                 </code>
                 </pre>
@@ -454,14 +452,66 @@ req.body("fanId=chichico").post().fetch();
 
             <section>
                 <pre>
-                <code data-trim>
+                <code data-trim style="word-wrap: break-word;">
 $> find . -iname *.java | grep server | xargs hg rm
                 </code>
                 </pre>
             </section>
 
             <section>
-              //TODO un ejemplo
+              <pre>
+                <code data-trim style="word-wrap: break-word;" class="java">
+class Calculations{
+  
+  double inflationAt(Broker broker){
+  }
+
+  double taxesAt(Broker broker){
+  }
+
+  double deviationAt(Broker broker){
+  }
+
+  List&lt;Double&gt; allCalculations(...){
+    //...
+  }
+}
+            </code>
+              </pre>
+            </section>
+
+            <section>
+              <pre>
+                <code data-trim style="word-wrap: break-word;">
+interface Calculation{
+  double valueAt(Broker broker)
+}
+
+List&lt;Calculation&gt; calculations(){
+  return new ArrayList&lt;Calculation&gt;(
+    (b) -&gt; return Math.pow(b.increase,4), 
+    (b) -&gt; return Math.sin(b.compression),
+    (b) -&gt; return b.intake * b.deviation
+    ...
+  );
+}
+
+public List&lt;Double&gt; allCalculations(...){
+  return calculations().stream()
+          .map(Calculation::valueAt(broker))
+          .collect(Collectors.toList())
+}
+                </code>
+              </pre>
+            </section>
+
+            <section>
+              <h2>De alguna forma, ya lo hacemos</h2>
+              <ul class="fragment">
+                <li>Strategy</li>
+                <li>Callback</li>
+                <li>Command</li>
+              </ul>
             </section>
 
             <section data-background="#4d7e65" data-background-transition="zoom">
@@ -477,8 +527,100 @@ $> find . -iname *.java | grep server | xargs hg rm
                 <h2>Datos como datos</h2>
             </section>
 
+            <section>
+              <h2>HttpServletRequest</h2>
+              <pre>
+                <code data-trim style="word-wrap: break-word;">
+getAsyncContext,getAttribute, getAttributeNames,
+getCharacterEncoding,getLength,getContentLength,
+getType,getContentType,getDispatcherType,getLocalName,
+getLocalAddr,getLocale,getLocales,getLocalName,
+getLocalPort,getParameterNames,getParameterValues,
+getProtocol,getReader,getRealPath,getRemoteAddr,
+getRemoteHost,getRemotePort,getRequestDispatcher,
+getScheme,getServerName,getServerPort,isSecure,
+removeAttribute,setAttribute,setCharacterEncoding,
+startAsync,getHeader,getHeaderNames,getIntHeader,
+getResponseStream,
+...
+                </code>
+              </pre>
+            </section>
+
+            <section>
+              <pre>
+                <code data-trim style="word-wrap: break-word;">
+[
+  "remote-addr": "127.0.0.1",
+  "scheme": "http",
+  "form-params": [],
+  "query-string": "fanId=chichico",
+  "request-method": "GET",
+  "content-type": "text/csv",
+  "server-name": "localhost",
+  "params": ["key": "value"],
+  "server-port": 8080,
+  "headers": [
+      "accept-encoding" : "gzip, deflate",
+      "connection": "close",
+      "content-length": 0,
+      ...
+    ]
+]
+                </code>
+              </pre>
+            </section>
+
+            <section>
+              <pre>
+                <code data-trim style="word-wrap: break-word;" class="java">
+class CustomerId{
+  private int id;
+  private String value;
+  //.....
+  
+}
+
+class InValue{
+  //...
+}
+
+class OutValue{
+  //...
+}
+
+class InValueContainer{
+  //...
+}
+
+class OutValueContainer{
+  //...
+}
+                </code>
+              </pre>
+            </section>
+
+            <section>
+              <h2>Efectos</h2>
+              <p>Inconsistencia</p>
+              <p>Duplicidad</p>
+              <p>Acoplamiento</p>
+            </section>
+
+            <section>
+              <h2>La especificidad esta sobre-valorada</h2>
+              <p class="fragment">Primitives</p>
+              <p class="fragment">Lists</p>
+              <p class="fragment">Sets</p>
+              <p class="fragment">Dictionary</p>
+            </section>
+
+
             <section data-background="#4d7e65" data-background-transition="zoom">
-              <p>TODO</p>
+              <p>Datos expresivos y claros</p>
+              <p>Uniformidad y simplicidad de código</p>
+              <p>Re-utilización</p>
+              <p class="fragment">JSON...</p>
             </section>
         </section>
 

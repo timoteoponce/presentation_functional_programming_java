@@ -193,9 +193,20 @@
 
         <section>
           <blockquote>
-            Puedes resumir la programación funcional como programación con métodos sin estado.
+            Una función es la relación entre valores donde
+            un valor de entrada retorna exactamente un valor de salida.
           </blockquote>
           <small>comp.lang.functional, 2014</small>
+        </section>
+
+        <section>
+          <h2>Algunas funciones</h2>
+          <ul>
+            <li>Math.sqrt(x)</li>
+            <li>Collections.max(x)</li>
+            <li>Arrays.asList(x...)</li>
+            <li>String.valueOf(x)</li>
+          </ul>
         </section>
 
 
@@ -206,7 +217,7 @@
         <section>
           <h2>Principios</h2>
           <ul>
-            <li>Flujo de datos (Data in, Data out)</li>
+            <li>Flujo de datos</li>
             <li>Inmutabilidad</li>
             <li>Estilo declarativo</li>
             <li>Datos como datos</li>
@@ -226,25 +237,20 @@
             <section>
               <pre>
                 <code style="word-wrap: break-word;">
-class RequestReader{
-
     String readAsString(InputStream stream) throw IOException{
         val reader = new InputStreamReader(stream);
-        returnChar CharStreams.toString(reader);
+        return CharStreams.toString(reader);
     }
 
     List&lt;String&gt; readAsLines(InputStream stream) throw IOException{
-        returnChar IOUtils.readLines(stream);
+        return IOUtils.readLines(stream);
     }
 
     void main(){
       val input = new FileInputStream("myfile.txt");
-
       println("content: " + readAsString(input));
       println("lines: " + readAsLines(input));
     }
-
-}
                 </code>
               </pre>
 
@@ -257,25 +263,21 @@ class RequestReader{
             <section>
               <pre>
                 <code style="word-wrap: break-word;">
-class RequestReader{
-
     String readAsString(InputStream stream) throw IOException{
         val reader = new InputStreamReader(cloneOf(stream));
-        returnChar Streams.toString(reader);
+        return Streams.toString(reader);
     }
 
     List&lt;String&gt; readAsLines(InputStream stream) throw IOException{
-        returnChar IOUtils.readLines(cloneOf(stream));
+        return IOUtils.readLines(cloneOf(stream));
     }
 
     InputStream cloneOf(InputStream input){
       val cloned ....
       return cloned;
     }
-
-}
                 </code>
-              </pre>
+             </pre>
             </section>
 
             <section>
@@ -401,8 +403,8 @@ class Constants{
 
             <section>
               <p>Todo valor es inmutable por defecto</p>
-              <p>Los estados mutables son privados/locales</p>
               <p>Todo valor modificado, genera un nuevo valor</p>
+              <p>Los estados mutables son privados/locales</p>
             </section>
 
             <section data-background="#4d7e65" data-background-transition="zoom">
@@ -450,7 +452,7 @@ int countBugs(String filePath){
 int countBugs(String filePath){
   return Files.readAllLines(Paths.get(filePath))
       .stream()
-      .filter(line -> line.contains(“BUG”))
+      .filter(line -&gt; line.contains(“BUG”))
       .count();
 }
                 </code>
@@ -466,14 +468,14 @@ List&lt;Deposit&gt; deposits= …;
 
 // give me the big transfers
 long allBigTransfers = deposits.stream()
-  .filter(d -> d.amount > 10000L)
-  .mapToLong(d -> t.amount)
+  .filter(d -&gt; d.amount &gt; 10000L)
+  .mapToLong(d -&gt; t.amount)
   .sum();
 
 
 // give me the smallest transfer
 Optional<> minTransfer = deposits.stream()
-         .min((d1, d2) -> d1 > d2);
+         .min((d1, d2) -> d1 &gt; d2);
 
                 </code>
                 </pre>

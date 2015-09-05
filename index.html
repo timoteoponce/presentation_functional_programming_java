@@ -77,17 +77,15 @@
         <section>
           <h1>Un simple problema</h1>
           <p>Programming Pearls Magazine, 1986</p>
-          <p class="fragment">
-            <i>Leer un archivo de texto, determinar la cantidad de palabras
+          <p>
+            <blockquote>"Leer un archivo de texto, determinar la cantidad de palabras
             mas usadas, e imprimir una lista ordenada de estas palabras
-            junto con sus frecuencias.</i>
+            junto con sus frecuencias."</blockquote>
+            <small>Jon Bentley, Programming Pearls, 1986</small>
           </p>
           <p class="fragment">
             - Donald Knuth </br>
             - Doug McIlroy
-          </p>
-          <p>
-            <small>Jon Bentley, Programming Pearls, 1986</small>
           </p>
         </section>
 
@@ -182,7 +180,7 @@
 
 
         <section>
-          <h1>Funciones</h1>
+          <h1>Programación funcional</h1>
         </section>
 
         <section>
@@ -212,7 +210,7 @@
             <li>Inmutabilidad</li>
             <li>Estilo declarativo</li>
             <li>Datos como datos</li>
-            <li>Funciones como datos</li>
+            <!--<li>Funciones como datos</li>-->
           </ul>
         </section>
 
@@ -278,6 +276,12 @@ class RequestReader{
 }
                 </code>
               </pre>
+            </section>
+
+            <section>
+              <p>No tocar el estado global</p>
+              <p>No modificar datos de entrada</p>
+              <p>No interrumpir el flujo de ejecución</p>
             </section>
 
 
@@ -358,7 +362,7 @@ req.body("fanId=chichico").post().fetch();
               </ul>
             </section>
 
-            <section>
+            <!--<section>
               <h2>Un ejemplo ...real</h2>
                 <pre>
                     <code data-trim style="word-wrap: break-word;" >
@@ -393,11 +397,16 @@ class Constants{
                 </code>
               </pre>
             </section>
+            -->
 
+            <section>
+              <p>Todo valor es inmutable por defecto</p>
+              <p>Los estados mutables son privados/locales</p>
+              <p>Todo valor modificado, genera un nuevo valor</p>
+            </section>
 
             <section data-background="#4d7e65" data-background-transition="zoom">
               <p>Los valores no cambian, generan nuevos valores</p>
-              <p>El estado mutable es local</p>
               <p>Los valores no necesitan thread-safety</p>
               <p>No existen efectos secundarios</p>
               <p>Identidad!!!</p>
@@ -470,8 +479,14 @@ Optional<> minTransfer = deposits.stream()
                 </pre>
             </section>
 
+            <section>
+              <p>Enfocarse en el qué, no en el cómo</p>
+              <p>Abstraer infraestructura</p>
+              <p>Generar expresiones, y no órdenes</p>
+            </section>
+
             <section data-background="#4d7e65" data-background-transition="zoom">
-              <p>Código expresivo</p>
+              <p>Código expresivo/legible</p>
               <p>Enfoque en el fondo, no la forma</p>
               <p>Simplicidad inherente</p>
               <p>Evaluación optimizable</p>
@@ -483,7 +498,7 @@ Optional<> minTransfer = deposits.stream()
           <h2>Tipos de datos específicos</h2>
         </section>
         -->
-
+        <!--
         <section>
             <section>
               <h2>Funciones como datos</h2>
@@ -559,7 +574,7 @@ public List&lt;Double&gt; allCalculations(...){
               <p>Funciones cortas y simples</p>
             </section>
         </section>
-
+        -->
 
         <section>
             <section>
@@ -621,6 +636,9 @@ class CustomerId{
 }
 
 class InValue{
+  private int id;
+  private String value;
+  private int type;
   //...
 }
 
@@ -654,6 +672,12 @@ class OutValueContainer{
               <p class="fragment">Dictionary</p>
             </section>
 
+            <section>
+              <p>Usar primitivos hasta donde se pueda</p>
+              <p>Usar estructuras hasta donde se pueda</p>
+              <p>Evitar los objetos anémicos</p>
+              <p>Evitar estructuras hereditarias</p>
+            </section>
 
             <section data-background="#4d7e65" data-background-transition="zoom">
               <p>Datos expresivos y claros</p>
